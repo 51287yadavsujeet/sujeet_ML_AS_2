@@ -32,7 +32,7 @@ def evaluate_model(name, model, X_train, X_test, y_train, y_test):
 def main():
     st.set_page_config(page_title="ML Model Evaluation Dashboard", layout="wide")
 
-    st.title("📊 Classification Model Evaluation Dashboard")
+    st.title("📊 Classification Model Evaluation Dashboard: Sujeet-ML-Assignment2")
     st.write("Evaluate multiple machine learning models on the same dataset.")
 
     if st.button("Run Model Evaluation"):
