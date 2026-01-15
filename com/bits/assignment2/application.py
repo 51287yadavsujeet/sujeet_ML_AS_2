@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 
 from sklearn.metrics import (
     accuracy_score, roc_auc_score, precision_score,
@@ -16,10 +15,7 @@ from model.naive_bayes import get_model as nb_model
 from model.random_forest import get_model as rf_model
 from model.xgboost_model import get_model as xgb_model
 
-
-# ------------------------------
-# Model Registry
-# ------------------------------
+# Model definition set up
 MODEL_REGISTRY = {
     "Logistic Regression": lr_model,
     "Decision Tree": dt_model,
@@ -30,9 +26,8 @@ MODEL_REGISTRY = {
 }
 
 
-# ------------------------------
 # Evaluation Function
-# ------------------------------
+
 def evaluate_model(model, X_test, y_test):
     y_pred = model.predict(X_test)
 
@@ -54,33 +49,25 @@ def evaluate_model(model, X_test, y_test):
     return results, y_pred
 
 
-# ------------------------------
-# Streamlit UI
-# ------------------------------
+# Streamlit UI Dashboard:
 def main():
-    st.set_page_config(page_title="ML Model Evaluation Dashboard", layout="wide")
-    st.title("📊 ML Classification Model Evaluation Dashboard")
+    st.set_page_config(page_title="ML Model Dashboard", layout="wide")
+    st.title("ML Classification Model Dashboard")
     st.write("Upload test dataset, select model, and evaluate performance.")
 
-    # ------------------------------
-    # Upload Test Dataset
-    # ------------------------------
-    st.subheader("📁 Upload Test Dataset (CSV)")
+    st.subheader(" Upload Test Dataset  csv fine only(.CSV format)")
     uploaded_file = st.file_uploader("Upload CSV file (Test Data Only)", type=["csv"])
 
-    # ------------------------------
-    # Model Selection
-    # ------------------------------
-    st.subheader("🤖 Select Model")
-    selected_model_name = st.selectbox("Choose a Model", list(MODEL_REGISTRY.keys()))
+# Choose Model
 
-    # ------------------------------
-    # Run Evaluation
-    # ------------------------------
+    st.subheader("choose the Model")
+    selected_model_name = st.selectbox("choose the Model", list(MODEL_REGISTRY.keys()))
+
+# Run Evaluation
     if st.button("Run Evaluation"):
 
         if uploaded_file is None:
-            st.error("❌ Please upload a CSV test dataset.")
+            st.error(" Please upload a CSV test dataset only.")
             return
 
         with st.spinner("Loading model and evaluating..."):
@@ -89,7 +76,7 @@ def main():
             test_df = pd.read_csv(uploaded_file)
 
             if "target" not in test_df.columns:
-                st.error("❌ CSV must contain a 'target' column.")
+                st.error(" CSV file must contain a 'target' column.")
                 return
 
             X_test = test_df.drop("target", axis=1)
@@ -104,35 +91,31 @@ def main():
             # Evaluate
             results, y_pred = evaluate_model(model, X_test, y_test)
 
-        # ------------------------------
-        # Display Metrics
-        # ------------------------------
-        st.success("✅ Model evaluation completed successfully!")
 
-        st.subheader("📈 Evaluation Metrics")
+# Display Metrics
+        st.success(" Model evaluation completed successfully!")
+
+        st.subheader("Evaluation Metrics")
         metrics_df = pd.DataFrame(results.items(), columns=["Metric", "Value"])
         st.table(metrics_df)
 
-        # ------------------------------
-        # Confusion Matrix
-        # ------------------------------
-        st.subheader("📊 Confusion Matrix")
+# Confusion Matrix
+
+        st.subheader("Confusion Matrix")
         cm = confusion_matrix(y_test, y_pred)
         cm_df = pd.DataFrame(cm, columns=["Predicted 0", "Predicted 1"], index=["Actual 0", "Actual 1"])
         st.dataframe(cm_df)
 
-        # ------------------------------
-        # Classification Report
-        # ------------------------------
-        st.subheader("📄 Classification Report")
+# Classification Report
+
+        st.subheader(" Classification Report")
         report = classification_report(y_test, y_pred, output_dict=True)
         report_df = pd.DataFrame(report).transpose()
         st.dataframe(report_df)
 
-        # ------------------------------
-        # Download Metrics
-        # ------------------------------
-        st.subheader("⬇ Download Evaluation Report")
+# Download Metrics
+
+        st.subheader(" Download Evaluation Report")
         csv = metrics_df.to_csv(index=False).encode("utf-8")
         st.download_button(
             label="Download Metrics CSV",
