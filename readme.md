@@ -5,7 +5,8 @@ pip install -r requirements.txt
 ----
 # ML Classification Assignment - Streamlit UI
 
-This project implements 6 ML classification models using the UCI Breast Cancer dataset and provides a Streamlit UI.
+This project implements 6 ML classification models using the UCI Breast Cancer dataset and provides a
+Streamlit UI.
 
 ## Models Implemented
 1. Logistic Regression
@@ -29,6 +30,14 @@ This project implements 6 ML classification models using the UCI Breast Cancer d
 pip install -r requirements.txt
 
 2. Run Streamlit App
-streamlit run app.py
+streamlit run application.py
 
 3. Open browser link shown in terminal
+4. https://sujeet-yadav-bits-mlassignment2.streamlit.app/
+
+App Run Steps:
+Download the sample test dataset 
+Upload the downloaded  test CSV file
+Select a classification model
+Click Run Evaluation
+Review metrics, confusion matrix, and classification report
