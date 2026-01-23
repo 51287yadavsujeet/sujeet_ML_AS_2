@@ -10,10 +10,8 @@ def load_dataset():
     scales features and returns train-test split.
     """
 
-    # Load dataset from sklearn (no internet required)
+    # Load dataset from sklearn
     data = load_breast_cancer()
-
-
 
     # Convert to DataFrame
     df = pd.DataFrame(data.data, columns=data.feature_names)
