@@ -16,7 +16,6 @@ from model.naive_bayes import get_model as nb_model
 from model.random_forest import get_model as rf_model
 from model.xgboost_model import get_model as xgb_model
 
-
 # ---------------- Model Registry ----------------
 MODEL_REGISTRY = {
     "Logistic Regression": lr_model,
@@ -131,11 +130,16 @@ def main():
         )
         st.dataframe(cm_df)
 
-        st.subheader("Classification Report")
-        report = classification_report(y_test, y_pred, output_dict=True)
-        report_df = pd.DataFrame(report).transpose()
-        st.dataframe(report_df)
-
 
 if __name__ == "__main__":
     main()
+    # -------- Footer --------
+    st.markdown(
+        """
+        <hr>
+        <div style="text-align: center; color: grey; font-size: 14px;">
+            Created by <b>Sujeet Kumar Yadav</b> | BITS ID: 2025AA05326
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
