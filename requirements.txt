@@ -1,6 +1,9 @@
-numpy
+streamlit
 pandas
+numpy
 scikit-learn
+matplotlib
+seaborn
+joblib
 xgboost
-streamlit==1.25.0
-altair==4.2.2
+openpyxl
