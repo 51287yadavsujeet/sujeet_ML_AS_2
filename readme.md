@@ -42,7 +42,7 @@ Dataset contains features computed from digitized images of fine needle aspirate
 Multiple classification algorithms are applied and compared using evaluation metrics such as Accuracy, AUC, Precision, Recall, F1-Score, and MCC to determine the most effective model for accurate breast cancer diagnosis.
 
 ## b. Dataset description:**
-Dataset used her is the Breast Cancer Wisconsin (Diagnostic) dataset, obtained from the UCI Machine Learning Repository and available in the sklearn.datasets module. 
+Dataset used her is the Breast Cancer Wisconsin (Diagnostic) dataset, obtained from the UCI Machine Learning Repository. 
 This is used for binary classification problems in medical diagnosis.
 1. Dataset Overview
 Total number of samples: 569
